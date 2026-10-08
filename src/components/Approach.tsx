@@ -57,73 +57,52 @@ export default function OurApproach() {
     >
       <div className="mx-auto max-w-7xl">
         <div className="max-w-4xl">
-          <p
-            className={`text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-500 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-4 opacity-0"
-            }`}
-          >
-            04. Our Approach
-          </p>
-
           <h2
             id="our-approach-heading"
-            className={`mt-5 max-w-3xl text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-neutral-900 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:text-5xl lg:text-6xl xl:text-[4.25rem] motion-reduce:transition-none ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-4 opacity-0"
+            className={`max-w-3xl text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-neutral-900 opacity-0 transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none sm:text-5xl lg:text-6xl xl:text-[4.25rem] ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-1.5 opacity-0"
             }`}
-            style={{ transitionDelay: "350ms" }}
           >
             From an idea to a home that feels right.
           </h2>
 
           <p
-            className={`mt-7 max-w-2xl text-base leading-7 text-neutral-600 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:text-lg sm:leading-8 motion-reduce:transition-none ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-4 opacity-0"
+            className={`mt-5 max-w-2xl text-base leading-7 text-neutral-600 opacity-0 transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none sm:text-lg sm:leading-8 ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-1.5 opacity-0"
             }`}
-            style={{ transitionDelay: "750ms" }}
+            style={{ transitionDelay: "350ms" }}
           >
             Good interiors don&apos;t start with choosing colours or furniture.
             They start with understanding the people who will live there.
           </p>
         </div>
 
-        <div className="mt-20 border-t border-neutral-300 sm:mt-24 lg:mt-32">
-          <div className="grid lg:grid-cols-3">
+        <div className="mt-20 sm:mt-24 lg:mt-32">
+          <div className="grid gap-16 sm:gap-20 lg:grid-cols-3 lg:gap-12 xl:gap-20">
             {steps.map((step, index) => {
-              const delay = 1200 + index * 400;
+              const delay = 750 + index * 400;
 
               return (
                 <article
                   key={step.number}
-                  className={`relative pt-8 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none sm:pt-10 lg:min-h-[310px] lg:border-r lg:border-neutral-300 lg:px-8 lg:pt-10 lg:first:pl-0 lg:last:border-r-0 lg:last:pr-0 ${
+                  className={`max-w-md opacity-0 transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
                     isVisible
                       ? "translate-y-0 opacity-100"
-                      : "translate-y-4 opacity-0"
+                      : "translate-y-1.5 opacity-0"
                   }`}
                   style={{ transitionDelay: `${delay}ms` }}
                 >
-                  <div className="flex items-start justify-between gap-6">
-                    <span className="font-serif text-4xl font-normal leading-none tracking-[-0.04em] text-neutral-400 sm:text-5xl">
-                      {step.number}
-                    </span>
+                  <span className="block font-serif text-5xl font-normal leading-none tracking-[-0.04em] text-neutral-400 sm:text-6xl">
+                    {step.number}
+                  </span>
 
-                    <span className="mt-2 h-px flex-1 bg-neutral-300 lg:hidden" />
-                  </div>
+                  <h3 className="mt-8 text-2xl font-semibold leading-tight tracking-[-0.03em] text-neutral-900 sm:text-3xl">
+                    {step.title}
+                  </h3>
 
-                  <div className="mt-10 max-w-sm lg:mt-16">
-                    <h3 className="text-2xl font-semibold leading-tight tracking-[-0.03em] text-neutral-900 sm:text-3xl">
-                      {step.title}
-                    </h3>
-
-                    <p className="mt-5 text-sm leading-6 text-neutral-600 sm:text-base sm:leading-7">
-                      {step.description}
-                    </p>
-                  </div>
+                  <p className="mt-3 text-sm leading-6 text-neutral-600 sm:text-base sm:leading-7">
+                    {step.description}
+                  </p>
                 </article>
               );
             })}
