@@ -29,12 +29,25 @@ const NAV_ITEMS = [
 
 const SCROLL_THRESHOLD = 72;
 
-const COLORS = {
-  background: "#f4f1eb",
-  text: "#262522",
-  muted: "#68645e",
-  dark: "#262522",
-} as const;
+const INTRO_SESSION_KEY = "aarva-intro-played";
+const INTRO_HOLD_MS = 600;
+const INTRO_MOVE_MS = 650;
+const INTRO_SETTLE_MS = 120;
+const INTRO_FADE_MS = 320;
+
+const INTRO_EASE_MOVE: [number, number, number, number] = [0.65, 0, 0.35, 1];
+const INTRO_EASE_IN: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const INTRO_EASE_OUT: [number, number, number, number] = [0.4, 0, 0.2, 1];
+
+type IntroPhase = "pending" | "intro" | "moving" | "done" | "skip";
+
+type NavbarTransition = {
+  duration?: number;
+  type?: "spring" | "tween";
+  stiffness?: number;
+  damping?: number;
+  mass?: number;
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                  Navbar                                    */
@@ -88,9 +101,9 @@ export function Navbar() {
     window.dispatchEvent(new Event("aarva:intro-complete"));
   }, []);
 
-  const transition = prefersReducedMotion
+  const transition: NavbarTransition = prefersReducedMotion
     ? { duration: 0 }
-    : { type: "spring" as const, stiffness: 220, damping: 32, mass: 0.6 };
+    : { type: "spring", stiffness: 220, damping: 32, mass: 0.6 };
 
   return (
     <>
@@ -134,7 +147,7 @@ function DesktopNavbar({
   logoRef,
 }: {
   scrolled: boolean;
-  transition: Record<string, unknown>;
+  transition: NavbarTransition;
   navRevealed: boolean;
   logoRef: RefObject<HTMLAnchorElement | null>;
 }) {
@@ -164,9 +177,9 @@ function DesktopNavbar({
         WebkitBackdropFilter: scrolled ? "blur(12px)" : "blur(0px)",
       }}
     >
-      <Logo logoRef={logoRef} />
+      <Logo logoRef={logoRef} scrolled={scrolled} />
 
-      <DesktopNavLinks />
+      <DesktopNavLinks scrolled={scrolled} />
 
       <motion.div
         initial={{ opacity: 0, y: -6 }}
@@ -186,7 +199,7 @@ function DesktopNavbar({
   );
 }
 
-function DesktopNavLinks() {
+function DesktopNavLinks({ scrolled }: { scrolled: boolean }) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
@@ -203,12 +216,18 @@ function DesktopNavLinks() {
             <a
               href={item.link}
               onMouseEnter={() => setHoveredIndex(index)}
-              className="relative z-10 block rounded-full px-3 py-2 text-[13px] font-medium text-neutral-600 transition-colors duration-200 hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f4f1eb] xl:px-3.5 xl:text-sm motion-reduce:transition-none"
+              className={`relative z-10 block rounded-full px-3 py-2 text-[13px] font-medium transition-colors duration-200 xl:px-3.5 xl:text-sm motion-reduce:transition-none ${
+                scrolled
+                  ? "text-neutral-600 hover:text-neutral-900 focus-visible:ring-offset-[#f4f1eb]"
+                  : "text-white hover:text-white/75 focus-visible:ring-offset-neutral-900"
+              } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2`}
             >
               {hoveredIndex === index && (
                 <motion.span
                   layoutId="aarva-desktop-nav-hover"
-                  className="absolute inset-0 -z-10 rounded-full bg-neutral-900/[0.045]"
+                  className={`absolute inset-0 -z-10 rounded-full ${
+                    scrolled ? "bg-neutral-900/[0.045]" : "bg-white/10"
+                  }`}
                   transition={{
                     type: "spring",
                     stiffness: 300,
@@ -241,7 +260,7 @@ function MobileNavbar({
   logoRef,
 }: {
   scrolled: boolean;
-  transition: Record<string, unknown>;
+  transition: NavbarTransition;
   isOpen: boolean;
   onToggle: () => void;
   onClose: () => void;
@@ -277,7 +296,7 @@ function MobileNavbar({
       }}
     >
       <div className="flex w-full flex-row items-center justify-between">
-        <Logo logoRef={logoRef} />
+        <Logo logoRef={logoRef} scrolled={scrolled} />
 
         <motion.button
           type="button"
@@ -288,7 +307,11 @@ function MobileNavbar({
           initial={{ opacity: 0 }}
           animate={{ opacity: navRevealed ? 1 : 0 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="relative flex h-10 w-10 items-center justify-center rounded-full text-neutral-900 transition-colors hover:bg-neutral-900/[0.045] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f4f1eb] motion-reduce:transition-none"
+          className={`relative flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 motion-reduce:transition-none ${
+            scrolled
+              ? "text-neutral-900 focus-visible:ring-offset-[#f4f1eb]"
+              : "text-white focus-visible:ring-offset-neutral-900"
+          }`}
         >
           {isOpen ? (
             <X size={22} strokeWidth={1.8} />
@@ -344,15 +367,21 @@ function MobileNavbar({
 
 function Logo({
   logoRef,
+  scrolled,
 }: {
   logoRef: RefObject<HTMLAnchorElement | null>;
+  scrolled: boolean;
 }) {
   return (
     <a
       ref={logoRef}
       href="#home"
       aria-label="Aarva Interiors home"
-      className="relative z-10 flex items-center rounded-full px-1 py-1 text-lg font-semibold tracking-tight text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f4f1eb]"
+      className={`relative z-10 flex items-center rounded-full px-1 py-1 text-lg font-semibold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 ${
+        scrolled
+          ? "text-neutral-900 focus-visible:ring-offset-[#f4f1eb]"
+          : "text-white focus-visible:ring-offset-neutral-900"
+      }`}
     >
       Aarva Interiors
     </a>
@@ -384,27 +413,6 @@ function NavbarCta({
 /* -------------------------------------------------------------------------- */
 /*                              Intro animation                               */
 /* -------------------------------------------------------------------------- */
-
-const INTRO_SESSION_KEY = "aarva-intro-played";
-
-const INTRO_HOLD_MS = 600;
-const INTRO_MOVE_MS = 650;
-const INTRO_SETTLE_MS = 120;
-const INTRO_FADE_MS = 320;
-
-const INTRO_EASE_MOVE: [number, number, number, number] = [
-  0.65, 0, 0.35, 1,
-];
-
-const INTRO_EASE_IN: [number, number, number, number] = [
-  0.16, 1, 0.3, 1,
-];
-
-const INTRO_EASE_OUT: [number, number, number, number] = [
-  0.4, 0, 0.2, 1,
-];
-
-type IntroPhase = "pending" | "intro" | "moving" | "done" | "skip";
 
 function getVisibleLogoTarget(
   desktop: HTMLElement | null,
@@ -476,9 +484,10 @@ function IntroLogo({
             targetRect.top +
             targetRect.height / 2 -
             (sourceRect.top + sourceRect.height / 2),
-          scale: sourceRect.width > 0
-            ? targetRect.width / sourceRect.width
-            : 1,
+          scale:
+            sourceRect.width > 0
+              ? targetRect.width / sourceRect.width
+              : 1,
         });
       }
 
