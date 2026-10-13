@@ -6,6 +6,7 @@ import Hero from "@/components/Hero";
 import { Navbar } from "@/components/Navbar";
 import SelectedWork from "@/components/SelectedWork";
 import AreasWeServe from "@/components/ServiceAreas";
+import TrustStrip from "@/components/TrustStrip";
 import WhatWeDo from "@/components/WhatWeDo";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       <main>
         <Navbar />
         <Hero />
+        <TrustStrip />
         <SelectedWork />
         <WhatWeDo />
         <OurApproach />
