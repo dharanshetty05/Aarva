@@ -1,6 +1,7 @@
 import AboutAarva from "@/components/About";
 import OurApproach from "@/components/Approach";
 import FinalCTA from "@/components/FinalCTA";
+import FloatingWhatsapp from "@/components/FloatingWhatsapp";
 import { Footer } from "@/components/Footer";
 import Hero from "@/components/Hero";
 import { Navbar } from "@/components/Navbar";
@@ -23,6 +24,7 @@ export default function Home() {
         <AreasWeServe />
         <FinalCTA />
         <Footer />
+        <FloatingWhatsapp />
       </main>
     </>
   );
