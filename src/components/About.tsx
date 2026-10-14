@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 export default function AboutAarva() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -67,9 +68,13 @@ export default function AboutAarva() {
               aria-label="View interior image"
               className="block overflow-hidden"
             >
-              <img
+              <Image
                 src="https://assets.architecturaldigest.in/photos/600840d854beb9e516da8938/master/w_1600%2Cc_limit/Hyderabad-Banjara-Hills-homes-interior-design-4.jpg"
                 alt="Refined residential interior with warm wood, natural light and contemporary furnishings"
+                width={1600}
+                height={1067}
+                unoptimized
+                sizes="(max-width: 1024px) 100vw, 58vw"
                 className="h-auto w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.015] motion-reduce:transition-none"
               />
             </a>
@@ -90,8 +95,8 @@ export default function AboutAarva() {
               </p>
 
               <p className="mt-7 text-base leading-7 text-neutral-600 sm:text-lg sm:leading-8">
-                We believe the best interiors aren't designed to impress
-                everyone. They're designed to feel right for the people who
+                We believe the best interiors aren&apos;t designed to impress
+                everyone. They&apos;re designed to feel right for the people who
                 live in them.
               </p>
 

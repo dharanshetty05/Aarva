@@ -436,11 +436,13 @@ function IntroLogo({
   const [offset, setOffset] = useState({ x: 0, y: 0, scale: 1 });
   const sourceRef = useRef<HTMLDivElement>(null);
 
+
   useLayoutEffect(() => {
     let alreadyPlayed = false;
 
     try {
-      alreadyPlayed = sessionStorage.getItem(INTRO_SESSION_KEY) === "true";
+      alreadyPlayed =
+        sessionStorage.getItem(INTRO_SESSION_KEY) === "true";
     } catch {
       alreadyPlayed = false;
     }
@@ -451,12 +453,18 @@ function IntroLogo({
 
     if (alreadyPlayed || reduced) {
       onSettle();
-      setPhase("skip");
       return;
     }
 
-    setPhase("intro");
+    // Start the intro asynchronously to avoid a synchronous
+    // state update inside the effect.
+    const frame = window.requestAnimationFrame(() => {
+      setPhase("intro");
+    });
+
+    return () => window.cancelAnimationFrame(frame);
   }, [onSettle]);
+
 
   useEffect(() => {
     if (phase !== "intro") return;

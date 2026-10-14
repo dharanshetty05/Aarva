@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const projects = [
   {
@@ -147,12 +148,13 @@ export default function SelectedWork() {
               >
                 <a href="#" aria-label={`View ${project.title}`} className="block">
                   <div className="relative aspect-[3/4] overflow-hidden bg-neutral-200">
-                    <img
+                    <Image
                       src={project.image}
                       alt={`${project.title} interior`}
-                      loading={index === 0 ? "eager" : "lazy"}
-                      decoding="async"
-                      className="h-full w-full scale-[1.05] translate-y-[1%] object-cover transition-[transform,filter] duration-[1800ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06] group-hover:translate-y-[-0.5%] group-hover:brightness-[1.035] motion-reduce:transition-none"
+                      fill
+                      unoptimized
+                      sizes="(max-width: 1023px) 84vw, 25vw"
+                      className="scale-[1.05] translate-y-[1%] object-cover transition-[transform,filter] duration-[1800ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06] group-hover:translate-y-[-0.5%] group-hover:brightness-[1.035] motion-reduce:transition-none"
                       style={{
                         transitionDelay: `${projectDelay + 100}ms`,
                       }}
@@ -193,12 +195,13 @@ export default function SelectedWork() {
                   className="block"
                 >
                   <div className="relative aspect-[3/4] overflow-hidden bg-neutral-200">
-                    <img
+                    <Image
                       src={project.image}
                       alt={`${project.title} interior`}
-                      loading={index === 0 ? "eager" : "lazy"}
-                      decoding="async"
-                      className="h-full w-full object-cover transition-[transform,filter] duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none group-hover:scale-[1.035]"
+                      fill
+                      unoptimized
+                      sizes="(max-width: 639px) 84vw, 70vw"
+                      className="object-cover transition-[transform,filter] duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none group-hover:scale-[1.035]"
                     />
                   </div>
 

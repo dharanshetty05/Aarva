@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 const areas = [
   {
@@ -102,12 +103,14 @@ export default function AreasWeServe() {
               style={{ transitionDelay: `${500 + index * 100}ms` }}
             >
               <div className="overflow-hidden rounded-xl bg-white">
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
                     src={area.image}
                     alt={`${area.name}, Hyderabad`}
-                    loading={index < 4 ? "eager" : "lazy"}
-                    className="h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.03] motion-reduce:transition-none"
+                    fill
+                    unoptimized
+                    sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 25vw"
+                    className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.03] motion-reduce:transition-none"
                   />
                 </div>
               </div>

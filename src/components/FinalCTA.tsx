@@ -61,13 +61,13 @@ export default function FinalCTA() {
               }`}
             >
               <p className="text-base font-normal leading-7 text-neutral-300 sm:text-lg sm:leading-8">
-                Whether you're starting with a blank canvas or looking to
-                transform a home that no longer feels right, we'd love to hear
+                Whether you&apos;re starting with a blank canvas or looking to
+                transform a home that no longer feels right, we&apos;d love to hear
                 what you have in mind.
               </p>
 
               <p className="mt-5 text-base font-normal leading-7 text-neutral-300 sm:text-lg sm:leading-8">
-                Tell us a little about your project and let's start a
+                Tell us a little about your project and let&apos;s start a
                 conversation.
               </p>
             </div>
