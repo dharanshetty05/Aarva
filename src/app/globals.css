@@ -14,53 +14,22 @@ body {
   color: #222;
 }
 
-@keyframes heroImageReveal {
-  from {
-    opacity: 0;
-    transform: scale(1.035);
-  }
 
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes heroTextReveal {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* Hero: keep critical content visible immediately */
 
 .hero-image {
-  animation: heroImageReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
-  will-change: transform, opacity;
+  opacity: 1;
+  transform: none;
 }
 
-.hero-line {
-  opacity: 0;
-  animation: heroTextReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  will-change: transform, opacity;
-}
-
-.hero-copy {
-  opacity: 0;
-  animation: heroTextReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  will-change: transform, opacity;
-}
-
+.hero-line,
+.hero-copy,
 .hero-actions {
-  opacity: 0;
-  animation: heroTextReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  will-change: transform, opacity;
+  opacity: 1;
+  transform: none;
 }
 
+/* Respect reduced-motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .hero-image,
   .hero-line,
@@ -71,6 +40,7 @@ body {
     transform: none;
   }
 }
+
 
 
 /* =========================================================

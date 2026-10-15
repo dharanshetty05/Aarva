@@ -75,6 +75,7 @@ export default function AreasWeServe() {
       ref={sectionRef}
       aria-labelledby="areas-heading"
       className="group overflow-hidden bg-[#f4f1eb] px-6 py-24 sm:px-8 md:py-32 lg:px-12 lg:py-40"
+      id="areas"
     >
       <div className="mx-auto max-w-[1400px]">
         <div className="max-w-3xl">

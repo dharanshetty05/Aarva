@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -67,32 +68,32 @@ export default function WhatWeDo() {
       ref={sectionRef}
       aria-labelledby="what-we-do-heading"
       className="bg-[#f4f1eb] px-6 py-24 sm:px-8 sm:py-28 lg:px-12 lg:py-36"
+      id="whatwedo"
     >
-      <div className="mx-auto max-w-[1400px]">
+      <div className="mx-auto max-w-350">
         <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24 xl:grid-cols-[0.75fr_1.25fr]">
           <div className="max-w-xl lg:pr-8">
+            {/* HEADING */}
             <h2
               id="what-we-do-heading"
-              className={`mt-6 max-w-lg text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-neutral-900 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:text-5xl lg:text-[4.25rem] ${
+              className={`mt-6 max-w-lg text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-neutral-900 transition-[opacity,transform] duration-[650ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none sm:text-5xl lg:text-[4.25rem] ${
                 isVisible
                   ? "translate-y-0 opacity-100"
                   : "translate-y-4 opacity-0"
               }`}
-              style={{
-                transitionDelay: isVisible ? "350ms" : "0ms",
-              }}
             >
               Designed around the way you live.
             </h2>
 
+            {/* DESCRIPTION */}
             <p
-              className={`mt-7 max-w-md text-[15px] leading-7 text-neutral-600 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:text-base sm:leading-7 ${
+              className={`mt-7 max-w-md text-[15px] leading-7 text-neutral-600 transition-[opacity,transform] duration-[650ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none sm:text-base sm:leading-7 ${
                 isVisible
                   ? "translate-y-0 opacity-100"
                   : "translate-y-4 opacity-0"
               }`}
               style={{
-                transitionDelay: isVisible ? "750ms" : "0ms",
+                transitionDelay: isVisible ? "150ms" : "0ms",
               }}
             >
               From a single room to an entire home, we create interiors that
@@ -100,28 +101,29 @@ export default function WhatWeDo() {
             </p>
           </div>
 
+          {/* SERVICES */}
           <div className="border-t border-neutral-900/15">
             {services.map((service, index) => (
               <div
                 key={service.number}
-                className={`group border-b border-neutral-900/15 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:translate-y-0 motion-reduce:opacity-100 ${
+                className={`group border-b border-neutral-900/15 transition-[opacity,transform] duration-[650ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
                   isVisible
                     ? "translate-y-0 opacity-100"
                     : "translate-y-4 opacity-0"
                 }`}
                 style={{
                   transitionDelay: isVisible
-                    ? `${1200 + index * 400}ms`
+                    ? `${200 + index * 150}ms`
                     : "0ms",
                 }}
               >
                 <div className="grid gap-5 py-8 sm:grid-cols-[72px_1fr] sm:gap-6 sm:py-9 lg:grid-cols-[82px_1fr] lg:gap-8 lg:py-10">
-                  <span className="text-xs font-medium tracking-[0.12em] text-neutral-400 transition-colors duration-700 group-hover:text-neutral-900">
+                  <span className="text-xs font-medium tracking-[0.12em] text-neutral-400 transition-colors duration-300 group-hover:text-neutral-900">
                     {service.number}
                   </span>
 
                   <div className="grid gap-3 sm:grid-cols-[minmax(220px,0.8fr)_minmax(240px,1fr)] sm:gap-8 lg:grid-cols-[minmax(260px,0.85fr)_minmax(280px,1fr)] lg:gap-12">
-                    <h3 className="text-2xl font-medium leading-tight tracking-[-0.025em] text-neutral-900 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 sm:text-[1.65rem]">
+                    <h3 className="text-2xl font-medium leading-tight tracking-[-0.025em] text-neutral-900 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 sm:text-[1.65rem]">
                       {service.title}
                     </h3>
 

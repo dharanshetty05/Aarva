@@ -20,12 +20,27 @@ import {
 import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
-  { name: "Selected Work", link: "#work" },
-  { name: "What We Do", link: "#services" },
+  { name: "Selected Work", link: "#selected-work" },
+  { name: "What We Do", link: "#whatwedo" },
   { name: "Our Approach", link: "#approach" },
   { name: "About Aarva", link: "#about" },
   { name: "Areas We Serve", link: "#areas" },
 ] as const;
+
+function scrollToSection(
+  event: React.MouseEvent<HTMLAnchorElement>,
+  sectionId: string,
+  onClose?: () => void,
+) {
+  event.preventDefault();
+
+  document.getElementById(sectionId)?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+
+  onClose?.();
+}
 
 const SCROLL_THRESHOLD = 72;
 
@@ -215,6 +230,9 @@ function DesktopNavLinks({ scrolled }: { scrolled: boolean }) {
           <li key={item.name} className="relative">
             <a
               href={item.link}
+              onClick={(event) =>
+                scrollToSection(event, item.link.slice(1))
+              }
               onMouseEnter={() => setHoveredIndex(index)}
               className={`relative z-10 block rounded-full px-3 py-2 text-[13px] font-medium transition-colors duration-200 xl:px-3.5 xl:text-sm motion-reduce:transition-none ${
                 scrolled
@@ -226,7 +244,7 @@ function DesktopNavLinks({ scrolled }: { scrolled: boolean }) {
                 <motion.span
                   layoutId="aarva-desktop-nav-hover"
                   className={`absolute inset-0 -z-10 rounded-full ${
-                    scrolled ? "bg-neutral-900/[0.045]" : "bg-white/10"
+                    scrolled ? "bg-neutral-900/4.5" : "bg-white/10"
                   }`}
                   transition={{
                     type: "spring",
@@ -340,8 +358,10 @@ function MobileNavbar({
               <a
                 key={item.name}
                 href={item.link}
-                onClick={onClose}
-                className="w-full rounded-xl px-4 py-3 text-base font-medium text-neutral-900 transition-colors hover:bg-neutral-900/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900/30 motion-reduce:transition-none"
+                onClick={(event) =>
+                  scrollToSection(event, item.link.slice(1), onClose)
+                }
+                className="w-full rounded-xl px-4 py-3 text-base font-medium text-neutral-900 transition-colors hover:bg-neutral-900/4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900/30 motion-reduce:transition-none"
               >
                 {item.name}
               </a>
@@ -376,6 +396,13 @@ function Logo({
     <a
       ref={logoRef}
       href="#home"
+      onClick={(event) => {
+        event.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }}
       aria-label="Aarva Interiors home"
       className={`relative z-10 flex items-center rounded-full px-1 py-1 text-lg font-semibold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 ${
         scrolled
@@ -540,7 +567,7 @@ function IntroLogo({
       {phase !== "done" && (
         <motion.div
           aria-hidden="true"
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-[#f4f1eb]"
+          className="fixed inset-0 z-60 flex items-center justify-center bg-[#f4f1eb]"
           initial={{ opacity: 1 }}
           exit={{
             opacity: 0,

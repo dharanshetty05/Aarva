@@ -35,6 +35,7 @@ export default function AboutAarva() {
       ref={sectionRef}
       aria-labelledby="about-aarva-heading"
       className="bg-[#f4f1eb] px-6 py-24 sm:px-8 sm:py-28 lg:px-12 lg:py-36"
+      id="about"
     >
       <div className="mx-auto max-w-7xl">
         <div
