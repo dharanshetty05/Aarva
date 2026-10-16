@@ -3,6 +3,7 @@
 import { ArrowRight } from "lucide-react";
 import { Playfair_Display } from "next/font/google";
 import Image from "next/image";
+import ScrollToWork from "./ScrollToWork";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -10,6 +11,7 @@ const playfair = Playfair_Display({
   style: ["normal", "italic"],
   display: "swap",
 });
+
 
 export default function Hero() {
   return (
@@ -70,7 +72,8 @@ export default function Hero() {
             className="hero-actions mt-9 flex flex-wrap items-center gap-3"
           >
             <a
-              href="#contact"
+              href="https://wa.me/917795116095?text=Hi! I'd like to know more about Aarva Interiors"
+              target="_blank"
               className="group inline-flex items-center gap-3 rounded-lg bg-white px-6 py-3.5 text-sm font-medium text-neutral-900 shadow-lg shadow-black/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-neutral-100 hover:shadow-xl"
             >
               Discuss Your Project
@@ -82,12 +85,7 @@ export default function Hero() {
               />
             </a>
 
-            <a
-              href="#projects"
-              className="inline-flex items-center rounded-lg border border-white/45 bg-white/[0.04] px-6 py-3.5 text-sm font-medium text-white backdrop-blur-[3px] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/70 hover:bg-white/[0.08]"
-            >
-              View Our Work
-            </a>
+            <ScrollToWork />
           </div>
         </div>
       </div>

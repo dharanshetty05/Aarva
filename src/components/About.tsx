@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -30,6 +31,13 @@ export default function AboutAarva() {
     return () => observer.disconnect();
   }, []);
 
+  const revealClass = isVisible
+    ? "translate-y-0 opacity-100"
+    : "translate-y-1.5 opacity-0";
+
+  const revealBase =
+    "opacity-0 transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none";
+
   return (
     <section
       ref={sectionRef}
@@ -39,11 +47,7 @@ export default function AboutAarva() {
     >
       <div className="mx-auto max-w-7xl">
         <div
-          className={`max-w-4xl opacity-0 transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
-            isVisible
-              ? "translate-y-0 opacity-100"
-              : "translate-y-1.5 opacity-0"
-          }`}
+          className={`${revealBase} ${revealClass} max-w-4xl`}
         >
           <h2
             id="about-aarva-heading"
@@ -55,39 +59,24 @@ export default function AboutAarva() {
 
         <div className="mt-16 grid gap-12 sm:mt-20 lg:mt-24 lg:grid-cols-12 lg:items-start lg:gap-16 xl:gap-20">
           <div
-            className={`lg:col-span-7 opacity-0 transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-1.5 opacity-0"
-            }`}
+            className={`${revealBase} ${revealClass} lg:col-span-7`}
             style={{ transitionDelay: "350ms" }}
           >
-            <a
-              href="https://assets.architecturaldigest.in/photos/600840d854beb9e516da8938/master/w_1600%2Cc_limit/Hyderabad-Banjara-Hills-homes-interior-design-4.jpg"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View interior image"
-              className="block overflow-hidden"
-            >
+            <div className="overflow-hidden">
               <Image
-                src="https://assets.architecturaldigest.in/photos/600840d854beb9e516da8938/master/w_1600%2Cc_limit/Hyderabad-Banjara-Hills-homes-interior-design-4.jpg"
+                src="/images/about.jpg"
                 alt="Refined residential interior with warm wood, natural light and contemporary furnishings"
                 width={1600}
                 height={1067}
-                unoptimized
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 className="h-auto w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.015] motion-reduce:transition-none"
               />
-            </a>
+            </div>
           </div>
 
           <div className="lg:col-span-4 lg:col-start-9 lg:pt-2">
             <div
-              className={`opacity-0 transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-1.5 opacity-0"
-              }`}
+              className={`${revealBase} ${revealClass}`}
               style={{ transitionDelay: "750ms" }}
             >
               <p className="text-base leading-7 text-neutral-600 sm:text-lg sm:leading-8">
@@ -108,15 +97,12 @@ export default function AboutAarva() {
               </p>
 
               <div
-                className={`mt-10 opacity-0 transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
-                  isVisible
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-1.5 opacity-0"
-                }`}
+                className={`${revealBase} ${revealClass} mt-10`}
                 style={{ transitionDelay: "1150ms" }}
               >
                 <a
-                  href="#contact"
+                  href="https://wa.me/917795116095?text=Hi! I'd like to know more about Aarva Interiors"
+                  target="_blank"
                   className="group inline-flex items-center gap-2 text-sm font-medium text-neutral-900"
                 >
                   <span className="border-b border-neutral-900/40 pb-1.5 transition-colors duration-300 group-hover:border-neutral-900 motion-reduce:transition-none">

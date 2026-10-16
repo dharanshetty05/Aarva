@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
 
@@ -85,17 +85,6 @@ export default function SelectedWork() {
   const cardWidth = isTablet ? 70 : 84;
 
   const carouselTransform = `translate3d(calc(-${activeIndex * cardWidth}vw - ${activeIndex * 12}px), 0, 0)`;
-
-  const handleContactClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-
-    document.getElementById("contact")?.scrollIntoView({
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ? "auto"
-        : "smooth",
-      block: "start",
-    });
-  };
 
   return (
     <section
@@ -255,8 +244,8 @@ export default function SelectedWork() {
           }`}
         >
           <a
-            href="#contact"
-            onClick={handleContactClick}
+            href="https://wa.me/917795116095?text=Hi! I'd like to know more about Aarva Interiors"
+            target="_blank"
             className="group inline-flex items-center gap-3 rounded-lg bg-neutral-900 px-6 py-3.5 text-sm font-medium text-white shadow-lg shadow-black/10 transition-[transform,background-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:bg-neutral-800 hover:shadow-[0_14px_30px_rgba(20,18,15,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900/40 focus-visible:ring-offset-2"
           >
             Discuss Your Project

@@ -80,7 +80,8 @@ export default function FinalCTA() {
               }`}
             >
               <a
-                href="#contact"
+                href="https://wa.me/917795116095?text=Hi! I'd like to know more about Aarva Interiors"
+                target="_blank"
                 className="group inline-flex min-h-12 items-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-semibold tracking-[-0.01em] text-neutral-900 transition-transform duration-300 ease-out hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
               >
                 <span>Discuss Your Project</span>

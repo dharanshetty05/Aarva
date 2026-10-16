@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -206,7 +205,7 @@ function DesktopNavbar({
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         className="contents"
       >
-        <NavbarCta href="#contact" className="px-5 py-2.5">
+        <NavbarCta href="https://wa.me/917795116095?text=Hi! I'd like to know more about Aarva Interiors" className="px-5 py-2.5">
           Discuss Your Project
         </NavbarCta>
       </motion.div>
@@ -368,7 +367,7 @@ function MobileNavbar({
             ))}
 
             <NavbarCta
-              href="#contact"
+              href="https://wa.me/917795116095?text=Hi! I'd like to know more about Aarva Interiors"
               onClick={onClose}
               className="mt-2 w-full py-3"
             >
@@ -429,6 +428,7 @@ function NavbarCta({
   return (
     <a
       href={href}
+      target="_blank"
       onClick={onClick}
       className={`relative z-10 inline-flex items-center justify-center rounded-full bg-neutral-900 px-4 py-2 text-center text-sm font-medium text-white transition duration-200 hover:-translate-y-0.5 hover:bg-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f4f1eb] motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${className ?? ""}`}
     >

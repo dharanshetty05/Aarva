@@ -1,10 +1,12 @@
+import ScrollToSection from "./ScrollToSection";
+
 const pages = [
-  { label: "Home", href: "#home" },
-  { label: "Selected Work", href: "#work" },
-  { label: "What We Do", href: "#services" },
-  { label: "Our Approach", href: "#approach" },
-  { label: "About Aarva", href: "#about" },
-  { label: "Areas We Serve", href: "#areas" },
+  { label: "Home", sectionId: "home" },
+  { label: "Selected Work", sectionId: "selected-work" },
+  { label: "What We Do", sectionId: "whatwedo" },
+  { label: "Our Approach", sectionId: "approach" },
+  { label: "About Aarva", sectionId: "about" },
+  { label: "Areas We Serve", sectionId: "areas" },
 ];
 
 export function Footer() {
@@ -15,14 +17,12 @@ export function Footer() {
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
           {/* Brand and Copyright */}
           <div className="shrink-0">
-            <a
-              href="#home"
-              aria-label="Aarva Interiors home"
-              className="inline-block text-[17px] font-semibold tracking-tight text-neutral-900 transition-opacity duration-200 ease-out hover:opacity-65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900/30 focus-visible:ring-offset-4 focus-visible:ring-offset-[#f4f1eb] motion-reduce:transition-none"
+            <ScrollToSection
+              sectionId="home"
+              className="inline-block text-left text-[17px] font-semibold tracking-tight text-neutral-900 transition-opacity duration-200 ease-out hover:opacity-65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900/30 focus-visible:ring-offset-4 focus-visible:ring-offset-[#f4f1eb] motion-reduce:transition-none"
             >
               Aarva Interiors
-            </a>
-
+            </ScrollToSection>
             <p className="mt-6 text-[13px] leading-6 tracking-[-0.01em] text-neutral-500">
                 © 2026 Aarva Interiors. All rights reserved.
             </p>
@@ -33,16 +33,16 @@ export function Footer() {
             <ul className="flex flex-wrap items-center gap-x-7 gap-y-5 sm:gap-x-8 lg:justify-end lg:gap-x-7 xl:gap-x-8">
               {pages.map((page) => (
                 <li key={page.label} className="shrink-0">
-                  <a
-                    href={page.href}
-                    className="group/link relative inline-block text-[14px] leading-5 tracking-[-0.01em] text-neutral-600 transition-colors duration-200 ease-out hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900/30 focus-visible:ring-offset-4 focus-visible:ring-offset-[#f4f1eb] motion-reduce:transition-none"
+                  <ScrollToSection
+                    sectionId={page.sectionId}
+                    className="group/link relative inline-block text-left text-[14px] leading-5 tracking-[-0.01em] text-neutral-600 transition-colors duration-200 ease-out hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900/30 focus-visible:ring-offset-4 focus-visible:ring-offset-[#f4f1eb] motion-reduce:transition-none"
                   >
                     {page.label}
                     <span
                       aria-hidden="true"
                       className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-neutral-900 transition-transform duration-200 ease-out group-hover/link:scale-x-100 group-focus-visible/link:scale-x-100 motion-reduce:transition-none"
                     />
-                  </a>
+                  </ScrollToSection>
                 </li>
               ))}
             </ul>
