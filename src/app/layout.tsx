@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Manrope } from "next/font/google";
 
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://aarvainteriors.vercel.app"),
 
   title: {
-    default:
-      "Aarva Interiors | Premium Residential Interior Design in Hyderabad",
+    default: "Aarva Interiors | Luxury Home Interiors in Hyderabad",
     template: "%s | Aarva Interiors",
   },
 
   description:
-    "Explore residential interior design, selected work, and the design approach of Aarva Interiors in Hyderabad.",
+    "Explore premium residential interior design, selected projects, and our design approach at Aarva Interiors in Hyderabad.",
 
   alternates: {
     canonical: "/",
@@ -23,26 +23,24 @@ export const metadata: Metadata = {
     url: "/",
     siteName: "Aarva Interiors",
     locale: "en_IN",
-    title:
-      "Aarva Interiors | Premium Residential Interior Design in Hyderabad",
+    title: "Aarva Interiors | Luxury Home Interiors in Hyderabad",
     description:
-      "Explore residential interiors, selected work, and the design approach of Aarva Interiors in Hyderabad.",
+      "Explore premium residential interiors, selected projects, and our design approach in Hyderabad.",
     images: [
       {
         url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "Aarva Interiors residential interior design in Hyderabad",
+        alt: "Aarva Interiors | Luxury Residential Interior Design",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title:
-      "Aarva Interiors | Premium Residential Interior Design in Hyderabad",
+    title: "Aarva Interiors | Luxury Home Interiors in Hyderabad",
     description:
-      "Explore residential interiors, selected work, and the design approach of Aarva Interiors in Hyderabad.",
+      "Explore premium residential interiors and selected projects in Hyderabad.",
     images: ["/opengraph-image.png"],
   },
 
@@ -55,7 +53,12 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
     },
   },
+
+  other: {
+    "theme-color": "#171717",
+  },
 };
+
 
 const manrope = Manrope({
   variable: "--font-manrope",
