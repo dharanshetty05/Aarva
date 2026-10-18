@@ -4,7 +4,7 @@ import { Manrope } from "next/font/google";
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aarvainteriors.vercel.app"),
+  metadataBase: new URL("https://aarva-interiors.vercel.app"),
 
   title: {
     default: "Aarva Interiors | Luxury Home Interiors in Hyderabad",
