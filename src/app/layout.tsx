@@ -1,10 +1,12 @@
-import type { Metadata } from "next";
+
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Manrope } from "next/font/google";
 
+const siteUrl = "https://aarva-interiors.vercel.app";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aarva-interiors.vercel.app"),
+  metadataBase: new URL(siteUrl),
 
   title: {
     default: "Aarva Interiors | Luxury Home Interiors in Hyderabad",
@@ -53,12 +55,11 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
     },
   },
-
-  other: {
-    "theme-color": "#171717",
-  },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#171717",
+};
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -66,12 +67,17 @@ const manrope = Manrope({
   display: "swap",
 });
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className={`${manrope.variable} font-sans h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
-        {children}
-      </body>
+    <html
+      lang="en"
+      className={`${manrope.variable} font-sans h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
