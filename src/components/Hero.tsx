@@ -15,7 +15,7 @@ const playfair = Playfair_Display({
 
 export default function Hero() {
   return (
-    <section className="relative h-[100svh] min-h-[680px] overflow-hidden bg-neutral-900" id="home">
+    <section className="relative h-svh min-h-170 overflow-hidden bg-neutral-900" id="home">
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
@@ -37,23 +37,23 @@ export default function Hero() {
       {/* Image treatment */}
       <div className="absolute inset-0 bg-black/[0.14]" />
 
-      <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-r from-black/55 via-black/25 to-transparent" />
 
       {/* Mobile readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/10 md:hidden" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/45 via-transparent to-black/10 md:hidden" />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto flex h-full max-w-[1440px] items-center px-6 sm:px-10 lg:px-16 xl:px-20">
-        <div className="max-w-[820px] text-white">
+      <div className="relative z-10 mx-auto flex h-full max-w-360 items-center px-6 sm:px-10 lg:px-16 xl:px-20">
+        <div className="max-w-205 text-white">
 
           {/* Headline */}
-          <h1 className="hero-heading font-sans text-[clamp(3rem,4.6vw,4.7rem)] font-medium leading-[1.02] tracking-[-0.05em]">
+          <h1 className="hero-heading font-sans text-[clamp(3rem,4.6vw,4.7rem)] font-medium leading-[1.02] tracking-tighter">
             <span className="hero-line block">
               Interiors that feel like they
             </span>
 
             <span
-  className={`hero-line block font-normal italic tracking-[-0.025em] ${playfair.className}`}
+  className={`hero-line block font-normal italic tracking-tight ${playfair.className}`}
 >
   belong to you.
 </span>
@@ -61,7 +61,7 @@ export default function Hero() {
 
           {/* Description */}
           <p
-            className="hero-copy mt-7 max-w-[510px] text-[15px] leading-7 text-white/85 sm:text-[17px]"
+            className="hero-copy mt-7 max-w-127.5 text-[15px] leading-7 text-white/85 sm:text-[17px]"
           >
             Thoughtfully designed homes across Hyderabad for people who care
             about how their space looks, feels, and works.
