@@ -1,27 +1,109 @@
 
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
 const trustSignals = [
   {
-    value: "10+",
+    value: 10,
+    suffix: "+",
     label: "Years of Experience",
   },
   {
-    value: "55+",
+    value: 55,
+    suffix: "+",
     label: "Projects Completed",
   },
   {
-    value: "5.0",
+    value: 5.0,
+    suffix: "",
     label: "Google Rating",
-    suffix: "★",
+    decimal: true,
+    star: true,
   },
   {
     value: "Hyderabad",
     label: "Based & Serving",
+    static: true,
   },
 ];
 
+function AnimatedNumber({
+  value,
+  decimal = false,
+  suffix = "",
+  start,
+}: {
+  value: number;
+  decimal?: boolean;
+  suffix?: string;
+  start: boolean;
+}) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!start) return;
+
+    let animationFrame: number;
+    const duration = 1800;
+    let startTime: number | null = null;
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+
+      const progress = Math.min(
+        (timestamp - startTime) / duration,
+        1
+      );
+
+      // Smooth ease-out animation
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+      setCount(value * easedProgress);
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [start, value]);
+
+  return (
+    <>
+      {decimal ? count.toFixed(1) : Math.floor(count)}
+      {suffix}
+    </>
+  );
+}
+
 export default function TrustStrip() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       aria-label="Aarva Interiors trust signals"
       className="relative z-20 -mt-10 px-5 sm:-mt-12 sm:px-8 lg:px-10"
     >
@@ -41,15 +123,24 @@ export default function TrustStrip() {
             >
               <div className="flex items-center gap-1.5">
                 <span className="text-xl font-medium tracking-tight text-[#30271f] sm:text-2xl">
-                  {item.value}
+                  {item.static ? (
+                    item.value
+                  ) : (
+                    <AnimatedNumber
+                      value={item.value as number}
+                      decimal={item.decimal}
+                      suffix={item.suffix}
+                      start={isVisible}
+                    />
+                  )}
                 </span>
 
-                {item.suffix && (
+                {item.star && (
                   <span
                     aria-hidden="true"
                     className="text-lg text-[#967b5d]"
                   >
-                    {item.suffix}
+                    ★
                   </span>
                 )}
               </div>
@@ -64,3 +155,4 @@ export default function TrustStrip() {
     </section>
   );
 }
+  
