@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Manrope } from "next/font/google";
 
-const siteUrl = "https://aarva-interiors.vercel.app";
+const siteUrl = "https://aarva-interiors.pages.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
